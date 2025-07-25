@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.qrDiv {
+    width: 220px;
+    height: 220px;
+    margin: 20px 0;
+    color: var(--color-white);
+    background-color: var(--color-very-dark);
+    border: 2px dashed var(--color-white);
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer {
+    color: var(--color-gray);
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+}
