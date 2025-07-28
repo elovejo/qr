@@ -1,64 +1,71 @@
 # QR Code Generator
 
-Generador de códigos QR simple y moderno hecho con React + Vite.
+A simple, modern, and customizable QR code generator built with **React** and **Vite**.
 
-## Descripción
+## 🧩 Description
 
-Esta aplicación permite generar códigos QR a partir de cualquier texto o URL. Puedes descargar el QR generado como imagen PNG. El diseño es responsivo y utiliza componentes personalizados y estilos modernos.
+This application lets you generate QR codes from any text or URL. You can download the generated QR code as a PNG image. The design is responsive, clean, and built with reusable components.
 
-## Demo
+## 🚀 Live Demo
 
-¡Puedes ver una demo en producción en [elovejo.com/qr](https://elovejo.com/qr)!
+Check out the live demo:  
+🔗 [https://elovejo.com/qr](https://elovejo.com/qr)
 
-## Instalación
+## ⚙️ Installation
 
-1. Clona este repositorio:
+1. Clone this repository:
    ```sh
-   git clone <url-del-repo>
+   git clone https://github.com/elovejo/qr.git
    cd qr
    ```
-2. Instala las dependencias:
+2. Install the dependencies:
    ```sh
    npm install
    ```
+3. Start the development server:
+   ```sh
+   npm run dev
+   ```
 
-## Scripts
+## 📦 Available Scripts
 
-- `npm run dev` — Inicia el servidor de desarrollo.
-- `npm run build` — Genera la versión de producción.
-- `npm run preview` — Previsualiza la build de producción.
-- `npm run lint` — Ejecuta ESLint para revisar el código.
+| Command           | Description                             |
+|-------------------|-----------------------------------------|
+| `npm run dev`     | Starts the development server           |
+| `npm run build`   | Builds the app for production           |
+| `npm run preview` | Previews the production build           |
+| `npm run lint`    | Runs ESLint to analyze code quality     |
 
-## Estructura del proyecto
+## 🗂️ Project Structure
 
 ```
 src/
-  App.jsx
-  App.css
-  main.jsx
-  assets/
-    logo.png
-  components/
-    QRGenerator.jsx
-    QRInput.jsx
-    QRDisplay.jsx
-    Btn/
-      Btn.jsx
-      Icons.jsx
+├── App.jsx
+├── App.css
+├── main.jsx
+├── assets/
+│   └── logo.png
+├── components/
+│   ├── QRGenerator.jsx
+│   ├── QRInput.jsx
+│   ├── QRDisplay.jsx
+│   └── Btn/
+│       ├── Btn.jsx
+│       └── Icons.jsx
 ```
 
-## Tecnologías principales
+## 🛠️ Technologies Used
 
-- [React 19](https://react.dev/)
-- [Vite](https://vitejs.dev/)
-- [qrcode.react](https://github.com/zpao/qrcode.react)
-- CSS Modules
+- ⚛️ [React 19](https://react.dev/)
+- ⚡ [Vite](https://vitejs.dev/)
+- 🔳 [qrcode.react](https://github.com/zpao/qrcode.react)
+- 🎨 CSS Modules
 
-## Personalización
+## ✏️ Customization
 
-- Puedes modificar los estilos en los archivos `.module.css` dentro de cada componente.
-- El logo se encuentra en `src/assets/logo.png`.
+- You can update styles by editing the `.module.css` files inside each component.
+- The editable logo is located at: `src/assets/logo.png`.
 
-## Licencia
+## 📄 License
 
-MIT
+Distributed under the [MIT](LICENSE) license.
