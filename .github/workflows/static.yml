@@ -1,0 +1,64 @@
+name: Deploy (build & sync to VPS)
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      REMOTE_DIR: "/var/www/elovejo.com/proyects/qr"
+      REMOTE_PUBLIC: "/var/www/elovejo.com/proyects/qr/public"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install deps
+        run: npm install
+
+      - name: Build (Vite)
+        run: npm run build
+
+      - name: Prep SSH key
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf "%s" "${{ secrets.VPS_KEY }}" > ~/.ssh/id_vps
+          chmod 600 ~/.ssh/id_vps
+
+      - name: Ensure remote folder exists (and empty)
+        shell: bash
+        env:
+          HOST: ${{ secrets.VPS_HOST }}
+          USER: ${{ secrets.VPS_USER }}
+          PORT: ${{ secrets.VPS_PORT }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/id_vps -p "${PORT:-22}" \
+            -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+            "$USER@$HOST" "mkdir -p '$REMOTE_PUBLIC' && rm -rf '$REMOTE_PUBLIC'/*"
+
+      - name: Sync dist/ -> VPS public/
+        shell: bash
+        env:
+          HOST: ${{ secrets.VPS_HOST }}
+          USER: ${{ secrets.VPS_USER }}
+          PORT: ${{ secrets.VPS_PORT }}
+        run: |
+          set -euo pipefail
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/id_vps -p ${PORT:-22} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" \
+            dist/ "$USER@$HOST:$REMOTE_PUBLIC/"
+
+      - name: Done
+        run: echo "🚀 Deploy completo a $REMOTE_PUBLIC"
