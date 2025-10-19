@@ -20,7 +20,6 @@ function QRGenerator() {
         <p className={s.footer}>elovejo.com with ❤️</p>
       </div>
       </div>
-      
     </>
   );
 }
